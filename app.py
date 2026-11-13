@@ -42,11 +42,16 @@ st.markdown(
 with st.sidebar:
     st.header("Configuración")
     opcion = st.radio("Caso que deseas ejecutar", [*EJEMPLOS, "Cargar archivo propio"])
-    subido = None
-    if opcion == "Cargar archivo propio":
-        subido = st.file_uploader("Especificación de la máquina (.txt)", type=["txt"])
-    limite = st.number_input("Máximo de transiciones", min_value=1, max_value=10000, value=20, step=1)
-    ejecutar = st.button("Ejecutar máquina", type="primary", use_container_width=True)
+    st.markdown("**Archivo de texto**")
+    subido = st.file_uploader(
+        "Seleccionar especificación (.txt)",
+        type=["txt"],
+        help="Elige 'Cargar archivo propio' para ejecutar este archivo.",
+    )
+    limite = st.number_input(
+        "Máximo de transiciones", min_value=1, max_value=10000, value=20, step=1
+    )
+    st.button("Volver a ejecutar", type="primary", use_container_width=True)
 
 if opcion in EJEMPLOS:
     archivo_entrada, nombre_salida = EJEMPLOS[opcion]
@@ -54,7 +59,10 @@ if opcion in EJEMPLOS:
 else:
     archivo_entrada = None
     nombre_salida = "salida_personalizada.txt"
-    st.info("Selecciona un archivo .txt con los componentes y las transiciones de la máquina.")
+    if subido is not None:
+        st.info(f"Archivo seleccionado: {subido.name}")
+    else:
+        st.info("Carga un archivo .txt desde el panel izquierdo para ejecutar tu máquina.")
 
 izquierda, derecha = st.columns([1, 1], gap="large")
 
@@ -72,14 +80,13 @@ with derecha:
     st.markdown("**Configuraciones:** αqβ (el estado aparece antes del símbolo leído).")
     st.markdown("**Blanco:** `B` · **Movimientos:** `L` y `R`.")
 
-if ejecutar:
+# Se ejecuta con la selección actual en cada cambio de caso o archivo.
+# Así nunca permanece visible un resultado de otra entrada.
+if archivo_entrada is not None or (opcion == "Cargar archivo propio" and subido is not None):
     temporal = None
     try:
         if opcion == "Cargar archivo propio":
-            if subido is None:
-                st.warning("Debes seleccionar un archivo .txt antes de ejecutar.")
-                st.stop()
-            # Archivo temporal para cargar la especificación; no es una segunda cinta.
+            # El archivo temporal contiene la especificación, no es una cinta adicional.
             with NamedTemporaryFile(mode="wb", suffix=".txt", delete=False) as archivo:
                 archivo.write(subido.getvalue())
                 temporal = Path(archivo.name)
@@ -98,7 +105,12 @@ if ejecutar:
             st.error("Cadena rechazada")
         else:
             st.warning(resultado)
-            st.caption("El límite de pasos no demuestra un ciclo en general. Para la cadena vacía, las transiciones qida y qvuelta repiten la configuración.")
+            if opcion == "Ciclo (cadena vacía)":
+                st.caption(
+                    "En este ejemplo, las transiciones qida y qvuelta "
+                    "repiten la configuración. El límite de pasos "
+                    "por sí solo no demuestra un ciclo infinito."
+                )
 
         a, b, c = st.columns(3)
         a.metric("Cadena", campos["entrada"] or "ε")
@@ -118,4 +130,3 @@ if ejecutar:
     finally:
         if temporal is not None:
             temporal.unlink(missing_ok=True)
-
