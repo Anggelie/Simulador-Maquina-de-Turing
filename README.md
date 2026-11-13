@@ -138,22 +138,3 @@ En el ciclo, la cinta continúa blanca: la cabeza pasa de la casilla 1 a la 0 y 
 La cinta se representa como un **único diccionario disperso**, con posiciones enteras que pueden extenderse hacia la izquierda y derecha. Las posiciones no escritas contienen implícitamente `B`. El estado y la posición del cabezal completan la configuración de la máquina.
 
 No se usan pilas, colas, una segunda cinta ni memorias auxiliares para realizar transiciones. El diccionario de transiciones representa la **función δ** (descripción de la máquina), no memoria de trabajo. Las configuraciones se escriben **directamente en el archivo de salida**, sin guardar una lista con todo el historial. La función de impresión forma temporalmente el texto de cada configuración, únicamente para visualizar el contenido de la cinta, no para calcular el siguiente paso.
-
-## 8. Entrega a Canvas
-
-| Inciso | Entregable |
-|---|---|
-| a) Simulador | `simulador_mt.py` |
-| b) Diagrama | `diagramas/maquina_turing.png` (en el ZIP) |
-| c) Entrada aceptada | `ejemplos/aceptacion.txt` |
-| d) Configuraciones aceptadas | `salidas/salida_aceptacion.txt` |
-| e) Entrada rechazada | `ejemplos/rechazo.txt` |
-| f) Configuraciones rechazadas | `salidas/salida_rechazo.txt` |
-| g) Entrada en ciclo | `ejemplos/ciclo.txt` |
-| h) Configuraciones del ciclo | `salidas/salida_ciclo.txt` |
-
-**La instrucción del parcial exige adjuntar los archivos directamente en Canvas; no basta entregar el enlace al repositorio.** Los incisos de revisión de código y ejecución se realizan presencialmente.
-
-## 9. Explicación breve para la demostración
-
-> Mi programa recibe un archivo con los componentes de una máquina de Turing determinista y una cadena. Primero revisa que la especificación sea válida. Después simula una sola cinta y guarda cada configuración con el estado antes del símbolo que se lee. Usé una máquina que acepta cadenas de ceros, rechaza las que contienen unos y entra en un ciclo cuando recibe la cadena vacía. El límite de pasos evita que el ejemplo del ciclo se ejecute sin terminar, pero el ciclo se demuestra observando las transiciones entre qida y qvuelta.
