@@ -21,7 +21,23 @@ EJEMPLOS = {
 st.set_page_config(page_title="Simulador de Máquina de Turing", page_icon="🔤", layout="wide")
 st.title("Simulador de Máquina de Turing")
 st.write("Máquina determinista de una cinta · Teoría de la Computación")
-st.caption("La interfaz utiliza el mismo simulador y las mismas validaciones que la terminal.")
+# Oculta los controles de Streamlit y los enlaces automáticos de los encabezados.
+st.markdown(
+    """
+    <style>
+    [data-testid="stToolbar"],
+    [data-testid="stDecoration"],
+    [data-testid="stMainMenu"],
+    #MainMenu,
+    [data-testid="stHeaderActionElements"],
+    [data-testid="stHeaderActionElements"] *,
+    h1 a, h2 a, h3 a, h4 a {
+        display: none !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 with st.sidebar:
     st.header("Configuración")
@@ -103,5 +119,3 @@ if ejecutar:
         if temporal is not None:
             temporal.unlink(missing_ok=True)
 
-st.divider()
-st.caption("La interfaz solo carga archivos y presenta resultados. La única cinta de trabajo pertenece al simulador.")
