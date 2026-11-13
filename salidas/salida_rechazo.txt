@@ -1,0 +1,11 @@
+CONFIGURACIONES DE LA MÁQUINA DE TURING
+Entrada: 001
+Notación: αqβ; q aparece antes del símbolo leído. B = blanco.
+
+000: q0001
+001: 0qscan01
+002: 00qscan1
+003: 001qrechazaB
+
+Resultado: RECHAZADA
+Pasos: 3
