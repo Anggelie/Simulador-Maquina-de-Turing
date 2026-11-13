@@ -1,0 +1,17 @@
+digraph MT {
+    graph [label="MT determinista: L = {0^n | n >= 1}", labelloc=t, fontsize=18, fontname="Arial", rankdir=LR, bgcolor="white", pad=0.3];
+    node [shape=circle, fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=11];
+    inicio [shape=point];
+    qacepta [shape=doublecircle];
+    qrechaza [shape=doublecircle];
+    inicio -> q0;
+    q0 -> qscan [label="0/0,R"];
+    q0 -> qrechaza [label="1/1,R"];
+    q0 -> qida [label="B/B,R"];
+    qscan -> qscan [label="0/0,R"];
+    qscan -> qrechaza [label="1/1,R"];
+    qscan -> qacepta [label="B/B,R"];
+    qida -> qvuelta [label="B/B,L"];
+    qvuelta -> qida [label="B/B,R"];
+}
