@@ -157,8 +157,8 @@ python -m streamlit run app.py
 
 Se abrirá automáticamente en el navegador (normalmente en `http://localhost:8501`). La pantalla incluye:
 
-- Selector de **Aceptación (000)**, **Rechazo (001)** y **Ciclo (cadena vacía)**.
-- Opción de cargar una especificación `.txt` propia.
+- Selector de **Aceptación (000)**, **Rechazo (001)** y **Ciclo (cadena vacía)**. El resultado se actualiza automáticamente al cambiar el caso.
+- Cargador de archivos `.txt` siempre visible; para ejecutar tu especificación, selecciona **Cargar archivo propio**. Al cargarla, el resultado se actualiza automáticamente.
 - Control para definir el límite de pasos; es una medida de seguridad de la simulación, **no** un detector general de ciclos infinitos.
 - Diagrama de estados correspondiente a los ejemplos del proyecto.
 - Resultado, número de estados, cantidad de transiciones y configuraciones **αqβ**.
@@ -168,4 +168,4 @@ Los archivos temporales de la interfaz solo se usan para recibir una especificac
 
 ### Presentación presencial
 
-Abre el selector, ejecuta sucesivamente aceptación, rechazo y ciclo, y muestra las configuraciones que se generan. Para el ciclo explica que las reglas entre `qida` y `qvuelta` hacen que la misma situación se repita sin alterar la cinta. Si el navegador no se abre, puedes seguir usando los comandos de la sección 5.
+Abre el selector y cambia entre aceptación, rechazo y ciclo para mostrar las configuraciones que se generan. Para el ciclo explica que las reglas entre `qida` y `qvuelta` hacen que la misma situación se repita sin alterar la cinta. Si el navegador no se abre, puedes seguir usando los comandos de la sección 5.
