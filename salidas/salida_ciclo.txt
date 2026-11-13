@@ -1,0 +1,28 @@
+CONFIGURACIONES DE LA MÁQUINA DE TURING
+Entrada: ε
+Notación: αqβ; q aparece antes del símbolo leído. B = blanco.
+
+000: q0B
+001: BqidaB
+002: qvueltaB
+003: BqidaB
+004: qvueltaB
+005: BqidaB
+006: qvueltaB
+007: BqidaB
+008: qvueltaB
+009: BqidaB
+010: qvueltaB
+011: BqidaB
+012: qvueltaB
+013: BqidaB
+014: qvueltaB
+015: BqidaB
+016: qvueltaB
+017: BqidaB
+018: qvueltaB
+019: BqidaB
+020: qvueltaB
+
+Resultado: LÍMITE DE 20 PASOS ALCANZADO: no se observó detención
+Pasos: 20
