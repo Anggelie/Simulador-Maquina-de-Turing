@@ -1,0 +1,17 @@
+# Máquina determinista de una cinta. B representa blanco.
+Q=q0,qscan,qida,qvuelta,qacepta,qrechaza
+Sigma=0,1
+Gamma=0,1,B
+blanco=B
+inicial=q0
+aceptacion=qacepta
+rechazo=qrechaza
+entrada=001
+delta=q0,0,qscan,0,R
+delta=q0,1,qrechaza,1,R
+delta=q0,B,qida,B,R
+delta=qscan,0,qscan,0,R
+delta=qscan,1,qrechaza,1,R
+delta=qscan,B,qacepta,B,R
+delta=qida,B,qvuelta,B,L
+delta=qvuelta,B,qida,B,R
